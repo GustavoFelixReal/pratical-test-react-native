@@ -22,6 +22,8 @@ export default function Books({ route, navigation }) {
 
         setBooks([...newBooks]);
         setResultsNumber(newResultsNumber);
+
+        console.log(newBooks)
       });  
     })();
   }, []);
@@ -34,7 +36,7 @@ export default function Books({ route, navigation }) {
         <Subtitle>{resultsNumber} resultado(s)</Subtitle>
 
         {books.length > 0 && 
-          <BookList />
+          <BookList books={books} />
         }
       </View>
 
