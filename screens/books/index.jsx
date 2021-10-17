@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
-import SearchField from "../../components/head/SearchField";
 import Subtitle from "../../components/head/Subtitle";
 import BookList from "../../components/items/BookList";
 import { api } from "../../services/api";
@@ -34,7 +33,10 @@ export default function Books({ route, navigation }) {
         <Subtitle>{resultsNumber} resultado(s)</Subtitle>
 
         {books.length > 0 && 
-          <BookList books={books} />
+          <BookList 
+            books={books}
+            navigation={navigation}
+          />
         }
       </View>
 

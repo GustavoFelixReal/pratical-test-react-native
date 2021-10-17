@@ -5,6 +5,7 @@ import React from "react";
 
 import Home from "./screens/home/index";
 import Books from "./screens/books/index";
+import BookDescription from './screens/book-description';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{ title: 'Bookshelf' }}/>
         <Stack.Screen name="Books" component={Books} options={{ title: 'Categoria' }}/>
+        <Stack.Screen name="BookDescription" component={BookDescription} options={{ title: 'Livro' }}/>
       </Stack.Navigator>
 
       <StatusBar style="auto" />

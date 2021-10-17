@@ -1,25 +1,27 @@
 import React from 'react';
-import { Text, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
-import Book from './Book';
+import BookItem from './BookItem';
 
 
 const BookListContainer = styled.View`
   width: 100%;
 `;
 
-export default function BookList({ books }) {
+export default function BookList({ books, navigation }) {
   return (
     <BookListContainer>
       <FlatList
         data={books}
         keyExtractor={item => item.title + item.author}
         renderItem={({ item }) => (
-          <Book 
+          <BookItem 
             title={item.title}
             author={item.author}
             image={item.book_image}
-            onPress={() => console.log('teste')}
+            onPress={() => navigation.push('BookDescription', { 
+              book: item
+            })}
           />
         )}
       />
