@@ -1,63 +1,23 @@
-import axios from "axios";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import SearchField from "./components/head/SearchField";
-import { API_KEY } from "@env";
-import Head from "./components/head/Head";
-import CategoryList from "./components/items/CategoryList";
-import Subtitle from "./components/head/Subtitle";
+
+import Home from "./screens/home/index";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [forYou, setForYou] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      await axios
-        .all([
-          axios.get(
-            "https://api.nytimes.com/svc/books/v3/lists/overview.json",
-            {
-              params: { "api-key": API_KEY },
-            }
-          ),
-          axios.get("https://api.nytimes.com/svc/books/v3/lists/names.json", {
-            params: { "api-key": API_KEY },
-          }),
-        ])
-        .then(
-          axios.spread((res1, res2) => {
-            const newForYou = res1.data.results.lists;
-            const newCategories = res2.data.results;
-
-            console.log(res2.data);
-            setCategories([...newCategories]);
-            setForYou([...newForYou]);
-          })
-        )
-        .catch((err) => {
-          console.log(err.data);
-        });
-    })();
-  }, []);
-
   return (
     <SafeAreaView style={styles.container}>
-      <Head title='Bookshelf' />
-      <SearchField onChange={() => console.log("teste")} />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
 
-      <View style={styles.lists}>
-        <Subtitle>Para Você</Subtitle>
-        {forYou.length > 0 && <CategoryList categories={forYou} id="forYou"/>}
-
-        <Subtitle>Categorias</Subtitle>
-        {categories.length > 0 && <CategoryList categories={categories} id="Categories"/>}
-      </View>
-
-      <View>
-        <StatusBar style='auto' />
-      </View>
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
