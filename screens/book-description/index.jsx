@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import BookFeaturedDetails from "../../components/items/BookFeaturedDetails";
 
 export default function BookDescription({ route, navigation }) {
@@ -11,9 +11,11 @@ export default function BookDescription({ route, navigation }) {
     navigation.setOptions({ title: book.title });
   }, []);
 
+  console.log(book.description)
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.lists}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.lists}>
         <BookFeaturedDetails 
           title={book.title}
           author={book.author}
@@ -21,12 +23,16 @@ export default function BookDescription({ route, navigation }) {
         />
 
         <Text style={styles.description}>{book.description}</Text>
-      </View>
+
+        <Pressable style={styles.button}>
+          <Text>Ler agora</Text>
+        </Pressable>
+      </ScrollView>
 
       <View>
         <StatusBar style='auto' />
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -35,15 +41,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     padding: 20,
     flex: 1,
-    color: "#fff",
     overflow: "scroll",
   },
   lists: {
     flex: 1,
-    alignItems: "flex-start",
-    marginTop: 20
+    marginTop: 20,
+    marginBottom: 20
   },
   description: {
     fontSize: 14
+  },
+  button: {
+    width: '100%',
+    backgroundColor: 'orange',
+    color: '#ffffff',
+    textAlign: 'center',
+    padding: 20,
+    borderRadius: 4,
+    marginTop: 20
   }
 });
