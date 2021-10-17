@@ -30,8 +30,6 @@ export default function Books({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchField onChange={() => console.log("teste")} placeholder="O que você gostaria de ler hoje?" />
-
       <View style={styles.lists}>
         <Subtitle>{resultsNumber} resultado(s)</Subtitle>
 

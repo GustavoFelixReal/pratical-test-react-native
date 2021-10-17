@@ -12,7 +12,6 @@ export default function BookList({ books }) {
   return (
     <BookListContainer>
       <FlatList
-        numColumns={3}
         data={books}
         keyExtractor={item => item.title + item.author}
         renderItem={({ item }) => (
