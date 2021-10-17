@@ -21,7 +21,7 @@ const CategoryPressable = styled.Pressable`
 export default function Category({ categoryName, onPress}) {
   return (
     <CategoryContainer>
-      <CategoryPressable onPressIn={onPress}/>
+      <CategoryPressable onPress={onPress}/>
       <Text>{categoryName}</Text>
     </CategoryContainer>
   )

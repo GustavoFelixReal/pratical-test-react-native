@@ -18,7 +18,8 @@ export default function CategoryList({ categories, id, navigation }) {
           <Category 
             categoryName={String(item.display_name)}
             onPress={() => navigation.push('Books', { 
-              categoryName: item.list_name_encoded
+              categoryName: item.list_name_encoded,
+              categoryTitle: item.display_name,
             })}
           />
         )}

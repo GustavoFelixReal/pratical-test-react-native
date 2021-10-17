@@ -3,10 +3,10 @@ import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import SearchField from "../../components/head/SearchField";
-import { API_KEY } from "@env";
-import Head from "../../components/head/Head";
+
 import CategoryList from "../../components/items/CategoryList";
 import Subtitle from "../../components/head/Subtitle";
+import { api } from "../../services/api";
 
 export default function Home({ navigation }) {
   const [forYou, setForYou] = useState([]);
@@ -16,15 +16,8 @@ export default function Home({ navigation }) {
     (async () => {
       await axios
         .all([
-          axios.get(
-            "https://api.nytimes.com/svc/books/v3/lists/overview.json",
-            {
-              params: { "api-key": API_KEY },
-            }
-          ),
-          axios.get("https://api.nytimes.com/svc/books/v3/lists/names.json", {
-            params: { "api-key": API_KEY },
-          }),
+          api.get('overview.json'),
+          api.get('names.json'),
         ])
         .then(
           axios.spread((res1, res2) => {
