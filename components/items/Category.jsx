@@ -5,19 +5,23 @@ import styled from 'styled-components/native';
 const CategoryContainer = styled.View`
   margin: 20px;
   height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const CategoryPressable = styled.Pressable`
-  width: 74px;
-  height: 74px;
-  background-color: #303030;
+  width: 200px;
+  height: 100px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
 `;
 
-export default function Category(props) {
+export default function Category({ categoryName, onPress}) {
   return (
     <CategoryContainer>
-      <CategoryPressable />
-      <Text>Categoria</Text>
+      <CategoryPressable onPressIn={onPress}/>
+      <Text>{categoryName}</Text>
     </CategoryContainer>
   )
 }

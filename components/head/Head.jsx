@@ -3,11 +3,9 @@ import styled from 'styled-components/native';
 import Title from './Title';
 
 const HeadContainer = styled.View`
-  position: absolute;
   width: 100%;
   height: 80px;
-  padding: 30px;
-  top: 0px;
+  padding: 50px 2px;
 `;
 
 export default function Head({ title, navigation }) {
