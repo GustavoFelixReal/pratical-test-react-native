@@ -8,6 +8,7 @@ const CategoryContainer = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 900;
 `;
 
 const CategoryPressable = styled.Pressable`

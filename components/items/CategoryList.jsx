@@ -7,7 +7,7 @@ const CategoryListContainer = styled.View`
   height: 150px;
 `;
 
-export default function CategoryList({ categories, id }) {
+export default function CategoryList({ categories, id, navigation }) {
   return (
     <CategoryListContainer>
       <FlatList
@@ -17,7 +17,9 @@ export default function CategoryList({ categories, id }) {
         renderItem={({ item }) => (
           <Category 
             categoryName={String(item.display_name)}
-            onPress={() => console.log('mensagem')}
+            onPress={() => navigation.push('Books', { 
+              categoryName: item.list_name_encoded
+            })}
           />
         )}
       />

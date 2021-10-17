@@ -8,7 +8,7 @@ import Head from "../../components/head/Head";
 import CategoryList from "../../components/items/CategoryList";
 import Subtitle from "../../components/head/Subtitle";
 
-export default function Home({ navigation }) {
+export default function Books({ navigation }) {
   const [forYou, setForYou] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
           axios.spread((res1, res2) => {
             const newForYou = res1.data.results.lists;
             const newCategories = res2.data.results;
-            
+
             setCategories([...newCategories]);
             setForYou([...newForYou]);
           })
@@ -44,7 +44,7 @@ export default function Home({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       {/* <Head title='Bookshelf' /> */}
-      <SearchField onChange={() => console.log("teste")}  placeholder="O que você gostaria de ler hoje?"/>
+      <SearchField onChange={() => console.log("teste")} placeholder="O que você gostaria de ler hoje?" />
 
       <View style={styles.lists}>
         <Subtitle>Para Você</Subtitle>
@@ -57,7 +57,7 @@ export default function Home({ navigation }) {
         }
 
         <Subtitle>Categorias</Subtitle>
-        {categories.length > 0 &&
+        {categories.length > 0 && 
           <CategoryList 
             categories={categories} 
             id="Categories"
